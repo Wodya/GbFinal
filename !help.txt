@@ -1,0 +1,16 @@
+Старт / Стоп
+	cd /mnt/d/Project/GbFinal/wodya-gb-final
+	alias sail='bash vendor/bin/sail'
+	APP_PORT=3001 sail up -d
+	sail stop
+
+Старт / Стоп. Более длинный вариант
+	APP_PORT=3001 ./vendor/bin/sail up -d
+	./vendor/bin/sail stop
+
+sail artisan make:migration create_table_brand
+sail artisan migrate
+sail artisan migrate:rollback
+sail artisan db:seed
+
+sail artisan make:controller SearchController

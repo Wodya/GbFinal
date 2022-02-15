@@ -1,0 +1,77 @@
+
+.ms-6{
+    margin-left: 60px;
+}
+.active-as{
+    background-color: #42C6B6;
+}
+body {
+    font-family: Circe;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 24px;
+    color: #333333;
+}
+.button-as {
+    height: 45px !important;
+    padding-left: 19px;
+    padding-right: 19px;
+    background-color: #FFFFFF;
+}
+.background-color-as{
+    background-color: #43968C !important;
+}
+.foreground-color-as{
+    color: #43968C !important;
+}
+
+.border-color-as{
+    border-color: #43968C !important;
+    border-width: 1px;
+}
+
+.nav-element{
+    height: 76px;
+}
+.input-head-as{
+    height: 45px;
+    padding-left: 16px;
+}
+
+.input-head-1-as{
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    width: 241px;
+}
+
+.input-head-2-as{
+    border-left-style: none;
+    border-radius: 0 !important;
+    width: 136px;
+}
+.input-head-3-as{
+    border-left-style: none;
+    border-radius: 0 3px 3px 0;
+    width: 45px;
+    background: #5ABBAF;
+    padding: 0;
+}
+.input-head-4-as{
+    width: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.input-head-5-as{
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.input-head-6-as{
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
