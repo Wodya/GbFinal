@@ -10,37 +10,122 @@
 </head>
 <body>
     <nav class="nav m-0 border-bottom align-items-center">
-        <img src="{{URL('/img/menu-symbol.png')}}" width="18px" height="14px" class="me-4">
-        <img src="{{URL('/img/logo.png')}}" class="me-3">
-        <button type="button" class="btn btn-light button-as border border-color-as me-4">Каталог</button>
-        <input type="text" class="border-color-as input-head-as input-head-1-as" placeholder="Номер детали или VIN номер">
-        <button class="btn input-head-as border-color-as input-head-2-as dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Бренд</button>
-        <button class="btn input-head-as border-color-as input-head-2-as dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Машина</button>
-        <button type="button" class="btn btn-light button-as input-head-as input-head-3-as border-color-as me-4"><img src="img/search.png" alt="Поиск" class="mx-auto"></i></button>
-        <button type="button" class="btn btn-light button-as border border-color-as me-1">Помощь в подборе</button>
-        <img src="{{URL('/img/header1.png')}}" class="me-3">
-        <div class="input-head-4-as border-start border-end nav-element"><img src="{{URL('/img/basket.png')}}" class="me-2"> <p class="p-0 m-0">23 4342 (3)</p></div>
-        <div class="input-head-5-as border-start border-end nav-element"><img src="{{URL('/img/mail.png')}}" class="me-4"> <img src="{{URL('/img/bell.png')}}" class="me-2"> </div>
-        <div class="input-head-6-as border-start nav-element ps-2">
-            <img src="{{URL('/img/vip.png')}}" class="me-2">
-            <p class="ps-0 m-0">Некрасов <span class="foreground-color-as">134 500 ₽</span></p>
-            <img src="{{URL('/img/drop_arrow.png')}}" class="ms-2">
+        <img src="img/menu-symbol.png" width="24px" height="24px" class="ms-4">
+        <img src="img/logo.png" class="ms-4">
+        <button type="button" class="btn btn-light button-as border border-color-dark-green-as font button-font-as fw-bold ms-4">Каталог</button>
+        <input type="text" class=" border border-color-gray-as input-head-as input-head-1-as ms-4" placeholder="Номер детали или VIN номер">
+        <button class="btn input-head-as border-color-gray-as input-head-2-as dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Бренд</button>
+        <button class="btn input-head-as border-color-gray-as input-head-2-as dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Машина</button>
+        <button type="button" class=" button-as input-head-as input-head-3-as border border-color-green-as"><img src="img/search.png" alt="Поиск"></i></button>
+        <button type="button" class="btn btn-light button-as border border-color-as font button-font-as fw-bold ms-4 ">Помощь в подборе</button>
+        <img src="img/header1.png" class="me-4">
+        <div class="input-head-4-as border-start border-end nav-element"><img src="img/basket.png" class="me-2 "><p class="p-0 m-0">23 434 (3)</p></div>
+        <div class="input-head-5-as border-start border-end nav-element"><img src="img/mail.png" class="me-4 ms-4"><img src="img/bell.png" class="me-4"> </div>
+        <div class="d-flex justify-content-start input-head-6-as border-start nav-element ps-2">
+            <img src="img/icon/Status.png" class="ms-4 me-2">
+            <p class="ps-0 m-0">Некрасов </p>
+            <span class="foreground-color-as ms-3">134 500 ₽</span>
+        </div>
+        <div class="d-flex flex-row-reverse flex-fill me-5">
+            <img src="img/drop_arrow.png">
         </div>
     </nav>
 
-    <div class="d-flex flex-column flex-shrink-0 p-3 m-0 text-white background-color-as fle align-items-top" style="width: 280px;">
+    <div class="d-flex flex-column flex-shrink-0 pt-3 m-0 text-white background-color-as fle align-items-top" style="width: 280px;">
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item active-as">
-                <a href="#" class="nav-link  d-flex align-items-center text-white" aria-current="page">
-                    <img src="{{URL('/img/menu_basket.png')}}" width="16" height="16" class="me-3"><use xlink:href="#home"></use>
+                <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+                    <img src="img/icon/desktop.png" width="24" height="24" class="me-1"><use xlink:href="#home"></use>
                     Рабочий стол
                 </a>
             </li>
-            <p class="ms-6 mt-2 fw-normal">Мои заказы</p>
+            <p class="ms-3 mt-2 fw-normal color-light-blue menu-part-font-as fw-bold">Мои заказы</p>
             <li class="nav-item">
-                <a href="#" class="nav-link d-flex align-items-center text-white" aria-current="page">
-                    <img src="{{URL('/img/menu_basket.png')}}" width="16" height="16" class="me-3"><use xlink:href="#home"></use>
-                    Рабочий стол
+                <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+                    <img src="img/icon/Basket.png" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
+                    Моя корзина
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+                    <img src="img/icon/orders.png" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
+                    Мои заказы
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+                    <img src="img/icon/delivery.png" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
+                    Доставка
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+                    <img src="img/icon/garage.png" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
+                    Гараж
+                </a>
+            </li>
+            <p class="ms-3 mt-2 fw-normal color-light-blue menu-part-font-as fw-bold">Обращения</p>
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+                    <img src="img/icon/appeals.png" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
+                    Обращения
+                </a>
+            </li>
+            <p class="ms-3 mt-2 fw-normal color-light-blue menu-part-font-as fw-bold">Гарантия и возврат</p>
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+                    <img src="img/icon/return.png" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
+                    Мои рекламации
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+                    <img src="img/icon/Document.png" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
+                    Гарантийная политика
+                </a>
+            </li>
+            <p class="ms-3 mt-2 fw-normal color-light-blue menu-part-font-as fw-bold">Финансы</p>
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+                    <img src="img/icon/rubl.png" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
+                    Финансы
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+                    <img src="img/icon/calendar.png" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
+                    График платежей
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+                    <img src="img/icon/balance.png" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
+                    Баланс
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+                    <img src="img/icon/history.png" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
+                    История операций
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+                    <img src="img/icon/profitability.png" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
+                    Прибыльность
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+                    <img src="img/icon/FilePlus.png" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
+                    Настройка наценок
+                </a>
+            </li>
+            <p class="ms-3 mt-2 fw-normal color-light-blue menu-part-font-as fw-bold">Профиль</p>
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+                    <img src="img/icon/profile.png" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
+                    Мой профиль
                 </a>
             </li>
         </ul>
