@@ -1,5 +1,5 @@
 Старт / Стоп
-	cd /mnt/d/Project/GbFinal/wodya-gb-final
+	cd /mnt/d/Git/GbFinal
 	alias sail='bash vendor/bin/sail'
 	APP_PORT=3001 sail up -d
 	sail stop

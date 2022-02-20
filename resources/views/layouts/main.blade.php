@@ -1,20 +1,18 @@
 <!doctype html>
 <html @lang('en')>
 <head>
-    @include('partials._head')
-    @include('partials._css')
+    @include('layouts.head')
 </head>
 
 <body id="page-top" >
-@include('partials._nav')
+@include('layouts.header')
 
-<div >
-    <button type="button" class="btn btn-primary">Primary</button>
-    @yield('content')
+<div class="d-flex justify-content-between">
+    @include('layouts.menu')
+    <div class="d-flex flex-fill p-2 back-color-neutral">
+        @yield('content')
+    </div>
 </div>
-
-@include('partials._footer')
-@include('partials._script')
 
 @yield('script')
 </body>
