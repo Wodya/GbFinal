@@ -18,6 +18,9 @@ Route::get('/register1', function () {
 Route::get('/register2', function () {
     return view('auth.register2');
 });
+Route::get('/search_step1', function () {
+    return view('search_step1');
+});
 
 Route::get('/', function () {
     return view('index');
