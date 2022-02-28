@@ -40,6 +40,10 @@
     color: #82D6CB;
 }
 
+@font-face {
+    font-family: Circe;
+    src: url('../fonts/Circe-ExtraLight.ttf');
+}
 .menu-part-font-as{
     font-family: Circe;
     font-style: normal;
@@ -141,9 +145,16 @@ body {
 .main-card{
     width: 448px;
     height: 200px;
-    background-color: #4a5568;
     margin-right: 30px;
     margin-bottom: 23px;
     background-color: white;
     border-radius:  3px 3px 3px 3px;
+}
+.register-logo{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.register-form{
+    padding: 50px 38px 50px 50px;
+    width: 400px;
 }
