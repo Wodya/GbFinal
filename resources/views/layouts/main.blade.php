@@ -9,7 +9,7 @@
 
 <div class="d-flex justify-content-between">
     @include('layouts.menu')
-    <div class="d-flex flex-fill p-2 back-color-neutral">
+    <div class="d-flex flex-fill p-2 bg-main">
         @yield('content')
     </div>
 </div>

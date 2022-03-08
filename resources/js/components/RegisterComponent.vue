@@ -1,28 +1,31 @@
 <template>
-    <form class="bg-white register-form">
+    <form class="bg-white register-form fw-normal" method="POST">
+        <slot>
+            <!-- CSRF gets injected into this slot -->
+        </slot>
         <div class="mb-3">
-            <label for="editName" class="form-label">Имя *</label>
-            <input type="text" class="form-control" id="editName" v-bind:class="{ 'border-danger': hasNameError() }" placeholder="Введите Имя" v-model="name">
+            <label for="name" class="">Имя *</label>
+            <input type="text" class="form-control" id="name" name="name" v-bind:class="{ 'border-danger': hasNameError() }" placeholder="Введите Имя" v-model="name">
             <p v-if="hasNameError()" class="color-attention">Длина должна быть не менее 5 символов</p>
         </div>
         <div class="mb-3">
-            <label for="editPhone" class="form-label">Телефон *</label>
-            <input type="text" class="form-control" id="editPhone" v-model="phone" @keydown="phoneChange" v-bind:class="{ 'border-danger': hasPhoneError() }">
+            <label for="phone" class="form-label">Телефон *</label>
+            <input type="text" class="form-control" id="phone" name="phone" v-model="phone" @keydown="phoneChange" v-bind:class="{ 'border-danger': hasPhoneError() }">
             <p v-if="hasPhoneError()" class="color-attention">Необходимо ввести номер телефона</p>
         </div>
         <div class="mb-3">
-            <label for="editEmail" class="form-label">E-mail *</label>
-            <input type="email" class="form-control" id="editEmail" aria-describedby="emailHelp" v-bind:class="{ 'border-danger': hasEmailError() }" v-model="email">
+            <label for="email" class="form-label">E-mail *</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" v-bind:class="{ 'border-danger': hasEmailError() }" v-model="email">
             <p v-if="hasEmailError()" class="color-attention">Необходимо ввести email</p>
         </div>
         <div class="mb-3">
-            <label for="editPassword1" class="form-label">Пароль *</label>
-            <input type="password" class="form-control" id="editPassword1" v-model="password1" v-bind:class="{ 'border-danger': hasPassword1Error() }">
+            <label for="password" class="form-label">Пароль *</label>
+            <input type="password" class="form-control" id="password" name="password" v-model="password1" v-bind:class="{ 'border-danger': hasPassword1Error() }">
             <p v-if="hasPassword1Error()" class="color-attention">Пароль должен иметь длину не менее 5 символов</p>
         </div>
         <div class="mb-4">
-            <label for="editPassword2" class="form-label">Повторите пароль *</label>
-            <input type="password" class="form-control" id="editPassword2" v-model="password2" v-bind:class="{ 'border-danger': hasPassword2Error() }" >
+            <label for="password2" class="form-label">Повторите пароль *</label>
+            <input type="password" class="form-control" id="password2" v-model="password2" v-bind:class="{ 'border-danger': hasPassword2Error() }" >
             <p v-if="hasPassword2Error()" class="color-attention">Пароли должны совпадать</p>
         </div>
         <div class="d-grid gap-1">
@@ -33,6 +36,7 @@
 
 <script>
 export default {
+    props : ['registerPath'],
     data(){
         return {
             name : "",

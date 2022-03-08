@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('users')->delete();
-        DB::table('users')->insert(['id' => 1, 'name' => 'wodya', 'email' => 'wodya@wodya.ru', 'password' => '$2y$10$BfJjfQInDWVV2W0VrXs90.Y847zsRY8KCWTpvTvFjSQ3ZTYzdTtH.']);
+        DB::table('users')->insert(['id' => 1, 'name' => 'Богдасаров Олег', 'email' => 'wodya@wodya.ru', 'phone' => '+79151111111', 'password' => '$2y$10$BfJjfQInDWVV2W0VrXs90.Y847zsRY8KCWTpvTvFjSQ3ZTYzdTtH.']);
 
         DB::table('brand')->delete();
         DB::table('brand')->insert(['id' => 1, 'name' => 'ABS']);

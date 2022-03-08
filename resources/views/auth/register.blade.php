@@ -10,11 +10,14 @@
     @yield('style')
 </head>
 
-<body class="back-color-neutral">
-    <div id="app">
-        <div class="d-flex justify-content-start align-items-center flex-column">
-        <img src="img\logo.png" class="register-logo" alt="">
-         <register-component></register-component>
-    </div>
-</body>
+    <body class="back-color-neutral">
+        <div id="app">
+            <div class="d-flex justify-content-start align-items-center flex-column">
+                <img src="img\logo.png" class="register-logo" alt="">
+                <register-component register-path="{{ route('register') }}">
+                    {{ csrf_field() }}
+                </register-component>
+            </div>
+        </div>
+    </body>
 </html>

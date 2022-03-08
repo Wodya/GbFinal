@@ -9,7 +9,7 @@ class Product extends \Illuminate\Database\Eloquent\Model
     protected $primaryKey = "id";
     protected $fillable = ['name', 'code'];
 
-    public function supplier(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function brand(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Brand::class, 'brand_id', 'id');
     }
