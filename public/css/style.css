@@ -5,7 +5,9 @@
 *{
     font-family: Circe;
 }
-
+a{
+    text-decoration: none;
+}
 a:link
 {
     text-decoration: none;

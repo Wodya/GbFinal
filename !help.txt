@@ -1,10 +1,12 @@
 Старт / Стоп
 	cd /mnt/d/GIT/GbFinal/
 	cd /mnt/c/Git/GbFinal/
+
 	alias sail='bash vendor/bin/sail'
 	APP_PORT=3001 sail up -d
-	sail npm run dev
 	sail npm run watch-poll
+
+	sail npm run dev
 	sail stop
 
 Старт / Стоп. Более длинный вариант
@@ -14,7 +16,7 @@
 
 sail artisan make:migration create_table_brand
 sail artisan migrate
-sail artisan migrate:rollback
+sail artisan migrate:rollback 1
 sail artisan db:seed
 
 sail artisan make:controller SearchController

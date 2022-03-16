@@ -17,7 +17,7 @@
             </div>
         </div>
         @forelse($products as $product)
-            <a class="row bg-white h-48 fs-16 fw-normal rounded-3 border border-1" href="#">
+            <a class="row bg-white h-48 fs-16 fw-normal rounded-3 border border-1" href="{{route('searchStep2',['productId' => $product->id])}}">
                 <div class="col d-flex justify-content-center align-items-center">
                     {{$product->brand->name}}
                 </div>

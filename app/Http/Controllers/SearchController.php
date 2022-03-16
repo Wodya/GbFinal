@@ -10,13 +10,16 @@ class SearchController extends Controller
 {
     public function searchStep1(Request $request,  ISearchService $searchService, string $search)
     {
-//        $products = [
-//          ["brand" => "Брэнд 1", "article" => "Артикул 1" . $search, "name" => "Насос топливный"],
-//          ["brand" => "Брэнд 2", "article" => "Артикул 2", "name" => "Насос топливный 234"],
-//          ["brand" => "Брэнд 3", "article" => "Артикул 3", "name" => "Насос топливный test"]
-//        ];
-
         $products = $searchService->searchStep1($search);
         return view('search_step1',['products' => $products]);
     }
+    public function searchStep2(Request $request,  ISearchService $searchService, string $productId)
+    {
+        $product = $searchService->getProduct($productId);
+        $offers = $searchService->searchStep2($productId);
+        $user = $searchService->getUser(Auth()->user()->id);
+//        dd($user->distributionPoint->name);
+        return view('search_step2',['offers' => $offers, 'product' => $product, 'user' => $user]);
+    }
+
 }

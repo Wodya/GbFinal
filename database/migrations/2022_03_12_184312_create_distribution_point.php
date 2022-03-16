@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,15 +14,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('offer', function (Blueprint $table) {
+        Schema::create('distribution_point', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
-            $table->integer('supplier_id');
-            $table->string('name')->nullable();
-            $table->integer('period_min');
-            $table->integer('period_max');
-            $table->integer('quantity');
-            $table->decimal('price');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offer');
+        Schema::dropIfExists('distribution_point');
     }
 };
