@@ -11,6 +11,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('register-component', require('./components/RegisterComponent.vue').default);
 Vue.component('header-component', require('./components/HeaderComponent.vue').default);
 Vue.component('search-step2-component', require('./components/SearchStep2Component.vue').default);
+Vue.component('vue-circle', require('./components/SearchStep2Component.vue').default);
 const app = new Vue({
     el: '#app',
 });

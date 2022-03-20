@@ -209,3 +209,12 @@ body {
 .fs-18{
     font-size: 16px;
 }
+.supplier-success{
+    height: 32px;
+}
+.supplier-success span{
+    font-size: 11px !important;
+}
+.invisible {
+     visibility: hidden;
+}

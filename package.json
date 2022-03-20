@@ -30,6 +30,7 @@
     },
     "dependencies": {
         "vue-axios": "^3.4.1",
-        "vue-router": "^4.0.12"
+        "vue-router": "^4.0.12",
+        "vue2-circle-progress": "^1.2.3"
     }
 }

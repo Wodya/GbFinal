@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use App\Models\Basket;
 use App\Models\Offer;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class SearchService implements ISearchService
 {
@@ -22,6 +24,10 @@ class SearchService implements ISearchService
                 'period' => $offerDb->period_min ."-" . $offerDb->period_max, 'successPercent' => $offerDb->supplier->success_percent,
                 'isLiquidity' => $offerDb->product->is_liquidity, 'isDealer' => $offerDb->supplier->is_dialer, 'quantity' => $offerDb->quantity, 'price' => $offerDb->price] ;
             $offer['name'] = $offerDb->name !== '' ? $offerDb->name : $offerDb->product->name;
+
+            $basket = Basket::where("user_id", Auth::user()->id)->where("offer_id", $offerDb->id)->first();
+            $offer['basket_quantity'] = $basket ? $basket->quantity : 0;
+
             $offers[] = $offer;
         }
         return $offers;

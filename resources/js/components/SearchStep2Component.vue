@@ -38,24 +38,44 @@
             <a v-for="item in offers" class="row bg-white h-48 fs-16 fw-normal rounded-3 border border-1" href="#">
                 <div class="col-4 d-flex justify-content-center align-items-center">
                     {{item.name}}
+                    {{item.isLiquidity}}
+                    {{item.isDealer}}
                 </div>
                 <div class="col-4 d-flex justify-content-center align-items-center">
-
-                    <div class="d-flex justify-content-around">
-                        <img v-if="item.isLiquidity === 1" src="/img/flag.png" class="ms-4" alt="Л">
-                        <img v-if="item.isDealer === 1" src="/img/star.png" class="ms-4" alt="Д">
+                    <div class="d-flex justify-content-around align-items-center">
+                        <vue-circle class="ms-4 supplier-success"
+                                    :progress="item.successPercent"
+                                    :size="30"
+                                    :reverse="false"
+                                    line-cap="round"
+                                    :fill="fill"
+                                    empty-fill="rgba(0, 0, 0, .1)"
+                                    :animation-start-value="0.0"
+                                    :start-angle="Math.PI/2"
+                                    insert-mode="append"
+                                    :thickness="2"
+                                    :show-percent="true"
+                                    @vue-circle-progress="progress"
+                                    @vue-circle-end="progress_end">
+                        </vue-circle>
+                        <img :class="{invisible : item.isLiquidity !== 1}" src="/img/flag.png" class="ms-4" alt="Л">
+                        <img :class="{invisible : item.isDealer !== 1}" src="/img/star.png" class="ms-4" alt="Д">
                     </div>
                 </div>
-                <div class="col d-flex justify-content-lg-start align-items-center">
+                <div class="col d-flex justify-content-center align-items-center">
                     {{item.quantity}}
                 </div>
-                <div class="col d-flex justify-content-lg-start align-items-center">
+                <div class="col d-flex justify-content-start align-items-center">
                     {{item.period}} дней
                 </div>
-                <div class="col d-flex justify-content-lg-start align-items-center">
+                <div class="col d-flex justify-content-start align-items-center">
                     {{item.price}} ₽
                 </div>
-                <div class="col d-flex justify-content-lg-start align-items-center">
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img v-show="item.basket_quantity === 0" src="/img/basket_step2.png" alt="К">
+                    <div v-show="item.basket_quantity > 0">
+                        {{item.basket_quantity}}
+                    </div>
                 </div>
             </a>
             <p v-if="offers.length === 0" class="fs-2 mb-30 mt-30">Поиск не дал результатов</p>
@@ -64,20 +84,30 @@
 </template>
 
 <script>
+import VueCircle from 'vue2-circle-progress'
+
 export default {
+    components: {
+        VueCircle
+    },
     name: "SearchStep2Component",
     props : ['user','offers', 'product', 'back'],
     data(){
         return {
-            name : "",
+            fill : { gradient: ["lightblue", "green", "blue"] },
         }
     },
     mounted(){
         console.log(this.back);
     },
     methods : {
-        hasNameError : function() {
+        progress(event,progress,stepValue){
+            console.log(stepValue);
         },
+        progress_end(event){
+            console.log("Circle progress end");
+        }
+
     },
 
 }

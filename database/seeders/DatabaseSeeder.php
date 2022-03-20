@@ -60,5 +60,7 @@ class DatabaseSeeder extends Seeder
         DB::table('transport_company')->delete();
         DB::table('transport_company')->insert(['id' => 1, 'name' => 'СДЭК']);
         DB::table('transport_company')->insert(['id' => 2, 'name' => 'Озон экспресс']);
+
+        DB::table('basket')->insert(['user_id' => 1, 'offer_id' => 2, 'quantity' => 5]);
     }
 }

@@ -20,3 +20,13 @@ sail artisan migrate:rollback 1
 sail artisan db:seed
 
 sail artisan make:controller SearchController
+
+Если порт 3306 занят, то очищаем что-то там
+netcfg -d 
+
+Новая установка
+В Ubuntu:
+	sudo curl -s https://laravel.build/GbFinal | bash
+
+sail composer require laravel/ui
+sail php artisan ui vue --auth
