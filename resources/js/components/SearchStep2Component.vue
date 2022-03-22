@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div :key="componentKey" >
-                <a v-for="item in offers" class="row bg-white h-48 fs-16 fw-normal rounded-3 border border-1" href="#">
+                <div v-for="item in offers" class="row bg-white h-48 fs-16 fw-normal rounded-3 border border-1" href="#">
                     <div class="col-4 d-flex justify-content-center align-items-center">
                         {{item.name}}
                     </div>
@@ -45,10 +45,11 @@
                                         :thickness="2"
                                         :show-percent="true"
                                         @vue-circle-progress="progress"
-                                        @vue-circle-end="progress_end">
+                                        @vue-circle-end="progress_end"
+                                        title="Процент успешных поставок">
                             </vue-circle>
-                            <img :class="{invisible : item.isLiquidity !== 1}" src="/img/flag.png" class="ms-4" alt="Л">
-                            <img :class="{invisible : item.isDealer !== 1}" src="/img/star.png" class="ms-4" alt="Д">
+                            <img :class="{invisible : item.isLiquidity !== 1}" src="/img/flag.png" class="ms-4" alt="Л" title="Ликвидный товар">
+                            <img :class="{invisible : item.isDealer !== 1}" src="/img/star.png" class="ms-4" alt="Д" title="Дилер">
                         </div>
                     </div>
                     <div class="col d-flex justify-content-center align-items-center">
@@ -62,17 +63,17 @@
                     </div>
                     <div class="step2-quantity-div d-flex align-items-center">
                         <div class="col d-flex justify-content-center align-items-center">
-                            <img v-show="item.basket_quantity === 0" src="/img/basket_step2.png" alt="К" v-on:click="changeQuantity(item.offerId, 1)">
+                            <img v-show="item.basket_quantity === 0" src="/img/basket_step2.png" class="fadein" alt="К" v-on:click="changeQuantity(item.offerId, 1)">
                             <div v-show="item.basket_quantity !== 0">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <img src="/img/basket_step2_minus.jpg" class="me-3" alt="-" v-on:click="changeQuantity(item.offerId, -1)">
+                                    <img src="/img/basket_step2_minus.jpg" class="me-3 fadein" alt="-" v-on:click="changeQuantity(item.offerId, -1)">
                                     <p class="m-0 step2-quantity">{{item.basket_quantity}}</p>
-                                    <img :class="{invisible : item.basket_quantity >= item.quantity}" src="/img/basket_step2_plus.jpg" class="ms-3" alt="+" v-on:click="changeQuantity(item.offerId, 1)">
+                                    <img :class="{invisible : item.basket_quantity >= item.quantity}" src="/img/basket_step2_plus.jpg" class="ms-3 fadein" alt="+" v-on:click="changeQuantity(item.offerId, 1)">
                                 </div>
                             </div>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
             <p v-if="offers.length === 0" class="fs-2 mb-30 mt-30">Поиск не дал результатов</p>
         </div>

@@ -5455,6 +5455,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5742,6 +5743,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue2_circle_progress__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue2-circle-progress */ "./node_modules/vue2-circle-progress/dist/vue-circle-progress.js");
 /* harmony import */ var vue2_circle_progress__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue2_circle_progress__WEBPACK_IMPORTED_MODULE_0__);
+//
 //
 //
 //
@@ -28880,7 +28882,7 @@ var render = function () {
         { key: _vm.componentKey },
         _vm._l(_vm.offers, function (item) {
           return _c(
-            "a",
+            "div",
             {
               staticClass:
                 "row bg-white h-48 fs-16 fw-normal rounded-3 border border-1",
@@ -28931,6 +28933,7 @@ var render = function () {
                           "insert-mode": "append",
                           thickness: 2,
                           "show-percent": true,
+                          title: "Процент успешных поставок",
                         },
                         on: {
                           "vue-circle-progress": _vm.progress,
@@ -28941,13 +28944,21 @@ var render = function () {
                       _c("img", {
                         staticClass: "ms-4",
                         class: { invisible: item.isLiquidity !== 1 },
-                        attrs: { src: "/img/flag.png", alt: "Л" },
+                        attrs: {
+                          src: "/img/flag.png",
+                          alt: "Л",
+                          title: "Ликвидный товар",
+                        },
                       }),
                       _vm._v(" "),
                       _c("img", {
                         staticClass: "ms-4",
                         class: { invisible: item.isDealer !== 1 },
-                        attrs: { src: "/img/star.png", alt: "Д" },
+                        attrs: {
+                          src: "/img/star.png",
+                          alt: "Д",
+                          title: "Дилер",
+                        },
                       }),
                     ],
                     1
@@ -29046,7 +29057,7 @@ var render = function () {
                           },
                           [
                             _c("img", {
-                              staticClass: "me-3",
+                              staticClass: "me-3 fadein",
                               attrs: {
                                 src: "/img/basket_step2_minus.jpg",
                                 alt: "-",
@@ -29063,7 +29074,7 @@ var render = function () {
                             ]),
                             _vm._v(" "),
                             _c("img", {
-                              staticClass: "ms-3",
+                              staticClass: "ms-3 fadein",
                               class: {
                                 invisible:
                                   item.basket_quantity >= item.quantity,
@@ -29080,7 +29091,7 @@ var render = function () {
                             }),
                             _vm._v(" "),
                             _c("img", {
-                              staticClass: "ms-3",
+                              staticClass: "ms-3 fadein",
                               attrs: {
                                 src: "/img/basket_delete.jpg",
                                 alt: "D",
@@ -29697,7 +29708,7 @@ var render = function () {
         { key: _vm.componentKey },
         _vm._l(_vm.offers, function (item) {
           return _c(
-            "a",
+            "div",
             {
               staticClass:
                 "row bg-white h-48 fs-16 fw-normal rounded-3 border border-1",
@@ -29748,6 +29759,7 @@ var render = function () {
                           "insert-mode": "append",
                           thickness: 2,
                           "show-percent": true,
+                          title: "Процент успешных поставок",
                         },
                         on: {
                           "vue-circle-progress": _vm.progress,
@@ -29758,13 +29770,21 @@ var render = function () {
                       _c("img", {
                         staticClass: "ms-4",
                         class: { invisible: item.isLiquidity !== 1 },
-                        attrs: { src: "/img/flag.png", alt: "Л" },
+                        attrs: {
+                          src: "/img/flag.png",
+                          alt: "Л",
+                          title: "Ликвидный товар",
+                        },
                       }),
                       _vm._v(" "),
                       _c("img", {
                         staticClass: "ms-4",
                         class: { invisible: item.isDealer !== 1 },
-                        attrs: { src: "/img/star.png", alt: "Д" },
+                        attrs: {
+                          src: "/img/star.png",
+                          alt: "Д",
+                          title: "Дилер",
+                        },
                       }),
                     ],
                     1
@@ -29837,6 +29857,7 @@ var render = function () {
                             expression: "item.basket_quantity === 0",
                           },
                         ],
+                        staticClass: "fadein",
                         attrs: { src: "/img/basket_step2.png", alt: "К" },
                         on: {
                           click: function ($event) {
@@ -29866,7 +29887,7 @@ var render = function () {
                             },
                             [
                               _c("img", {
-                                staticClass: "me-3",
+                                staticClass: "me-3 fadein",
                                 attrs: {
                                   src: "/img/basket_step2_minus.jpg",
                                   alt: "-",
@@ -29883,7 +29904,7 @@ var render = function () {
                               ]),
                               _vm._v(" "),
                               _c("img", {
-                                staticClass: "ms-3",
+                                staticClass: "ms-3 fadein",
                                 class: {
                                   invisible:
                                     item.basket_quantity >= item.quantity,

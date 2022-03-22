@@ -225,3 +225,13 @@ body {
     width: 20px;
     text-align: center;
 }
+
+.fadein{
+    opacity:0.7;
+    transition: 1s ease;
+    cursor: pointer;
+}
+.fadein:hover{
+    opacity:1;
+    transition: 1s ease;
+}
