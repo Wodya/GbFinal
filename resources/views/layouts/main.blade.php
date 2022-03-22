@@ -8,7 +8,7 @@
 <body>
 <div id="app">
     {{--@include('layouts.header')--}}
-    <header-component user="{{ Auth::user()->name }}"></header-component>
+    <header-component user="{{ Auth::user()->name }}" search-url="{{route("searchStep1","find")}}"></header-component>
     <div class="d-flex justify-content-between">
         @include('layouts.menu')
         <div class="d-flex flex-fill p-2 bg-main">

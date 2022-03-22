@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/search_step1/{search}', [App\Http\Controllers\SearchController::class, 'searchStep1'])->middleware(['auth'])->name('searchStep1');
 Route::get('/search_step2/{productId}', [App\Http\Controllers\SearchController::class, 'searchStep2'])->middleware(['auth'])->name('searchStep2');
+Route::get('/search_step2/changeQuantity/{offerId}/{quantity}', [App\Http\Controllers\SearchController::class, 'changeQuantity'])->middleware(['auth'])->name('step2ChangeQuantity');
+Route::get('/basket', [App\Http\Controllers\BasketController::class, 'basket'])->middleware(['auth'])->name('basket');
+Route::get('/basket/changeQuantity/{offerId}/{quantity}', [App\Http\Controllers\BasketController::class, 'changeQuantity'])->middleware(['auth'])->name('basketChangeQuantity');
+Route::get('/basket/deletePosition/{offerId}', [App\Http\Controllers\BasketController::class, 'deletePosition'])->middleware(['auth'])->name('basketDeletePosition');;
 
 Route::get('/register1', function () {
     return view('auth.register1');

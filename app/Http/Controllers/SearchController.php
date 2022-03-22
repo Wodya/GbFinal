@@ -18,8 +18,10 @@ class SearchController extends Controller
         $product = $searchService->getProduct($productId);
         $offers = $searchService->searchStep2($productId);
         $user = $searchService->getUser(Auth()->user()->id);
-//        dd($user->distributionPoint->name);
         return view('search_step2',['offers' => $offers, 'product' => $product, 'user' => $user]);
     }
-
+    public function changeQuantity(Request $request,  ISearchService $searchService, string $offerId, int $quantity) : int
+    {
+        return $searchService->changeQuantity($offerId, $quantity);
+    }
 }

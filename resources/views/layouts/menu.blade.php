@@ -1,14 +1,14 @@
 <div class="d-flex flex-column flex-shrink-0 pt-3 m-0 text-white background-color-as fle align-items-top" style="width: 280px;">
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item active-as">
-            <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+            <a href="/" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
                 <img src="{{ asset('img/icon/desktop.png') }}" width="24" height="24" class="me-1"><use xlink:href="#home"></use>
                 Рабочий стол
             </a>
         </li>
         <p class="ms-3 mt-2 fw-normal color-light-blue menu-part-font-as fw-bold">Мои заказы</p>
         <li class="nav-item">
-            <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+            <a href="{{route("basket")}}" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
                 <img src="{{ asset('img/icon/basket.png') }}" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
                 Моя корзина
             </a>

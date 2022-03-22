@@ -218,3 +218,10 @@ body {
 .invisible {
      visibility: hidden;
 }
+.step2-quantity-div {
+    width: 120px;
+}
+.step2-quantity{
+    width: 20px;
+    text-align: center;
+}
