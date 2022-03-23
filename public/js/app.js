@@ -5456,6 +5456,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5468,7 +5473,8 @@ __webpack_require__.r(__webpack_exports__);
     product: Object,
     back: String,
     changeQuantityUrl: String,
-    deletePositionUrl: String
+    deletePositionUrl: String,
+    makeOrderUrl: String
   },
   data: function data() {
     return {
@@ -5479,7 +5485,8 @@ __webpack_require__.r(__webpack_exports__);
         duration: 0,
         easing: "circleProgressEasing"
       },
-      componentKey: 0
+      componentKey: 0,
+      orderNumberStr: "Заказ"
     };
   },
   mounted: function mounted() {
@@ -5521,8 +5528,6 @@ __webpack_require__.r(__webpack_exports__);
       rq.send();
     },
     deletePosition: function deletePosition(offerId) {
-      console.log(this.offers);
-      console.log("deletePosition: offerId=".concat(offerId));
       var rq = new XMLHttpRequest();
 
       rq.onreadystatechange = function (vm) {
@@ -5541,6 +5546,28 @@ __webpack_require__.r(__webpack_exports__);
 
       var url = this.deletePositionUrl;
       url = url.replace("offerId", offerId);
+      console.log(url);
+      rq.open("GET", url);
+      rq.send();
+    },
+    makeOrder: function makeOrder() {
+      console.log("makeOrder");
+      var rq = new XMLHttpRequest();
+
+      rq.onreadystatechange = function (vm) {
+        if (this.readyState === XMLHttpRequest.DONE) {
+          if (this.status === 200) {
+            console.log("Order made");
+            window.location.reload();
+            vm.componentKey += 1;
+          } else {
+            console.log("Error makeOrder");
+          }
+        }
+      }.bind(rq, this);
+
+      var url = this.makeOrderUrl;
+      url = url.replace("orderNumber", this.orderNumberStr);
       console.log(url);
       rq.open("GET", url);
       rq.send();
@@ -29117,10 +29144,55 @@ var render = function () {
       _vm._v(" "),
       _vm.offers.length === 0
         ? _c("p", { staticClass: "fs-2 mb-30 mt-30" }, [
-            _vm._v("Поиск не дал результатов"),
+            _vm._v("Корзина пуста"),
           ])
         : _vm._e(),
     ]),
+    _vm._v(" "),
+    _vm.offers.length > 0
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "d-flex justify-content-start align-items-center mt-30",
+          },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary ",
+                attrs: { type: "button" },
+                on: { click: _vm.makeOrder },
+              },
+              [_vm._v("Оформить заказ")]
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "ms-5 mb-0" }, [_vm._v("Номер заказа")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.orderNumberStr,
+                  expression: "orderNumberStr",
+                },
+              ],
+              staticClass: "input-small ms-3",
+              attrs: { type: "text", id: "orderNumber", name: "orderNumber" },
+              domProps: { value: _vm.orderNumberStr },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.orderNumberStr = $event.target.value
+                },
+              },
+            }),
+          ]
+        )
+      : _vm._e(),
   ])
 }
 var staticRenderFns = []

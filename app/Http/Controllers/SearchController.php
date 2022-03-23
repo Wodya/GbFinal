@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Services\IBasketService;
+use App\Services\ICommonService;
 use App\Services\ISearchService;
 use Illuminate\Http\Request;
 
@@ -13,15 +15,15 @@ class SearchController extends Controller
         $products = $searchService->searchStep1($search);
         return view('search_step1',['products' => $products]);
     }
-    public function searchStep2(Request $request,  ISearchService $searchService, string $productId)
+    public function searchStep2(Request $request,  ISearchService $searchService, ICommonService $commonService, string $productId)
     {
         $product = $searchService->getProduct($productId);
         $offers = $searchService->searchStep2($productId);
-        $user = $searchService->getUser(Auth()->user()->id);
+        $user = $commonService->getUser(Auth()->user()->id);
         return view('search_step2',['offers' => $offers, 'product' => $product, 'user' => $user]);
     }
-    public function changeQuantity(Request $request,  ISearchService $searchService, string $offerId, int $quantity) : int
+    public function changeQuantity(Request $request,  IBasketService $basketService, string $offerId, int $quantity) : int
     {
-        return $searchService->changeQuantity($offerId, $quantity);
+        return $basketService->changeQuantity($offerId, $quantity);
     }
 }

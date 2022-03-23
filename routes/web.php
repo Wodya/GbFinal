@@ -18,6 +18,7 @@ Route::get('/search_step2/changeQuantity/{offerId}/{quantity}', [App\Http\Contro
 Route::get('/basket', [App\Http\Controllers\BasketController::class, 'basket'])->middleware(['auth'])->name('basket');
 Route::get('/basket/changeQuantity/{offerId}/{quantity}', [App\Http\Controllers\BasketController::class, 'changeQuantity'])->middleware(['auth'])->name('basketChangeQuantity');
 Route::get('/basket/deletePosition/{offerId}', [App\Http\Controllers\BasketController::class, 'deletePosition'])->middleware(['auth'])->name('basketDeletePosition');;
+Route::get('/basket/makeOrder/{orderNumber}', [App\Http\Controllers\BasketController::class, 'makeOrder'])->middleware(['auth'])->name('makeOrder');;
 
 Route::get('/register1', function () {
     return view('auth.register1');

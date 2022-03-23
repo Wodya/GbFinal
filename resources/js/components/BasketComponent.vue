@@ -83,7 +83,12 @@
                     </div>
                 </div>
             </div>
-            <p v-if="offers.length === 0" class="fs-2 mb-30 mt-30">Поиск не дал результатов</p>
+            <p v-if="offers.length === 0" class="fs-2 mb-30 mt-30">Корзина пуста</p>
+        </div>
+        <div v-if="offers.length > 0" class="d-flex justify-content-start align-items-center mt-30">
+            <button  type="button" class="btn btn-primary " @click="makeOrder">Оформить заказ</button>
+            <p class="ms-5 mb-0">Номер заказа</p>
+            <input type="text" class="input-small ms-3" id="orderNumber" name="orderNumber" v-model="orderNumberStr">
         </div>
     </div>
 </template>
@@ -102,13 +107,15 @@ export default {
         product: Object,
         back : String,
         changeQuantityUrl : String,
-        deletePositionUrl : String
+        deletePositionUrl : String,
+        makeOrderUrl : String,
     },
     data(){
         return {
             fill : { gradient: ["lightblue", "green", "blue"] },
             animation : { duration: 0, easing: "circleProgressEasing" },
             componentKey: 0,
+            orderNumberStr : "Заказ"
         }
     },
     mounted(){
@@ -147,8 +154,6 @@ export default {
             rq.send();
         },
         deletePosition: function(offerId) {
-            console.log(this.offers);
-            console.log(`deletePosition: offerId=${offerId}`);
             let rq = new XMLHttpRequest();
 
             rq.onreadystatechange = function(vm) {
@@ -168,6 +173,28 @@ export default {
             rq.open("GET", url);
             rq.send();
         },
+        makeOrder : function (){
+            console.log("makeOrder");
+            let rq = new XMLHttpRequest();
+
+            rq.onreadystatechange = function(vm) {
+                if (this.readyState === XMLHttpRequest.DONE) {
+                    if (this.status === 200) {
+                        console.log("Order made");
+                        window.location.reload();
+                        vm.componentKey += 1;
+                    } else {
+                        console.log("Error makeOrder");
+                    }
+                }
+            }.bind(rq, this);
+            let url = this.makeOrderUrl;
+            url = url.replace("orderNumber", this.orderNumberStr);
+            console.log(url);
+            rq.open("GET", url);
+            rq.send();
+
+        }
     },
 }
 </script>

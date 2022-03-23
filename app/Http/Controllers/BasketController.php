@@ -2,23 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\IBasketService;
+use App\Services\ICommonService;
 use App\Services\ISearchService;
 use Illuminate\Http\Request;
 
 class BasketController extends Controller
 {
-    public function basket(Request $request,  ISearchService $searchService)
+    public function basket(Request $request,  IBasketService $basketService, ICommonService $commonService)
     {
-        $offers = $searchService->getBasket();
-        $user = $searchService->getUser(Auth()->user()->id);
+        $offers = $basketService->getBasket();
+        $user = $commonService->getUser(Auth()->user()->id);
         return view('basket',['offers' => $offers, 'user' => $user]);
     }
-    public function changeQuantity(Request $request,  ISearchService $searchService, string $offerId, int $quantity) : int
+    public function changeQuantity(Request $request,  IBasketService $basketService, ICommonService $commonService, string $offerId, int $quantity) : int
     {
-        return $searchService->changeQuantity($offerId, $quantity);
+        return $basketService->changeQuantity($offerId, $quantity);
     }
-    public function deletePosition(Request $request,  ISearchService $searchService, string $offerId)
+    public function deletePosition(Request $request,  IBasketService $basketService, string $offerId)
     {
-        $searchService->deletePosition($offerId);
+        $basketService->deletePosition($offerId);
+    }
+    public function makeOrder(Request $request,  IBasketService $basketService, string $orderNumber)
+    {
+        $basketService->makeOrder($orderNumber);
     }
 }
