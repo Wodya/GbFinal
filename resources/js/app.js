@@ -13,6 +13,7 @@ Vue.component('header-component', require('./components/HeaderComponent.vue').de
 Vue.component('search-step2-component', require('./components/SearchStep2Component.vue').default);
 Vue.component('vue-circle', require('./components/SearchStep2Component.vue').default);
 Vue.component('basket-component', require('./components/BasketComponent.vue').default);
+Vue.component('orders-component', require('./components/OrdersComponent.vue').default);
 
 const app = new Vue({
     el: '#app',

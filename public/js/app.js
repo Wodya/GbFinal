@@ -5662,6 +5662,190 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/OrdersComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/OrdersComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue2_circle_progress__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue2-circle-progress */ "./node_modules/vue2-circle-progress/dist/vue-circle-progress.js");
+/* harmony import */ var vue2_circle_progress__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue2_circle_progress__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "OrdersComponent",
+  props: {
+    user: Object,
+    modeId: Number,
+    orderList: Array,
+    changeQuantityUrl: String
+  },
+  data: function data() {
+    return {
+      componentKey: 0,
+      orderNumberStr: "Заказ"
+    };
+  },
+  mounted: function mounted() {
+    console.log(this.orderList);
+  },
+  methods: {
+    progress: function progress(event, _progress, stepValue) {// console.log(stepValue);
+    },
+    progress_end: function progress_end(event) {// console.log("Circle progress end");
+    },
+    changeQuantity: function changeQuantity(offerId, quantity) {
+      console.log(this.offers);
+      console.log("changeQuantity: offerId=".concat(offerId, ", quantity=").concat(quantity));
+      var rq = new XMLHttpRequest();
+
+      rq.onreadystatechange = function (vm) {
+        if (this.readyState === XMLHttpRequest.DONE) {
+          if (this.status === 200) {
+            var row = vm.offers.find(function (el) {
+              return el.offerId === offerId;
+            });
+            row.basket_quantity += quantity;
+            vm.componentKey += 1;
+            console.log(row.basket_quantity);
+          } else {
+            console.log("Error changeQuantity");
+          }
+        }
+      }.bind(rq, this);
+
+      var url = this.changeQuantityUrl;
+      url = url.replace("offerId", offerId);
+      url = url.replace("quantity", quantity);
+      console.log(url);
+      rq.open("GET", url);
+      rq.send();
+    },
+    deletePosition: function deletePosition(offerId) {
+      var rq = new XMLHttpRequest();
+
+      rq.onreadystatechange = function (vm) {
+        if (this.readyState === XMLHttpRequest.DONE) {
+          if (this.status === 200) {
+            var row = vm.offers.findIndex(function (el) {
+              return el.offerId === offerId;
+            });
+            vm.offers.splice(row, 1);
+            vm.componentKey += 1;
+          } else {
+            console.log("Error deletePosition");
+          }
+        }
+      }.bind(rq, this);
+
+      var url = this.deletePositionUrl;
+      url = url.replace("offerId", offerId);
+      console.log(url);
+      rq.open("GET", url);
+      rq.send();
+    },
+    makeOrder: function makeOrder() {
+      console.log("makeOrder");
+      var rq = new XMLHttpRequest();
+
+      rq.onreadystatechange = function (vm) {
+        if (this.readyState === XMLHttpRequest.DONE) {
+          if (this.status === 200) {
+            console.log("Order made");
+            window.location.reload();
+            vm.componentKey += 1;
+          } else {
+            console.log("Error makeOrder");
+          }
+        }
+      }.bind(rq, this);
+
+      var url = this.makeOrderUrl;
+      url = url.replace("orderNumber", this.orderNumberStr);
+      console.log(url);
+      rq.open("GET", url);
+      rq.send();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RegisterComponent.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RegisterComponent.vue?vue&type=script&lang=js& ***!
@@ -5943,6 +6127,7 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('header-component', (__web
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('search-step2-component', (__webpack_require__(/*! ./components/SearchStep2Component.vue */ "./resources/js/components/SearchStep2Component.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('vue-circle', (__webpack_require__(/*! ./components/SearchStep2Component.vue */ "./resources/js/components/SearchStep2Component.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('basket-component', (__webpack_require__(/*! ./components/BasketComponent.vue */ "./resources/js/components/BasketComponent.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('orders-component', (__webpack_require__(/*! ./components/OrdersComponent.vue */ "./resources/js/components/OrdersComponent.vue")["default"]));
 var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
   el: '#app'
 });
@@ -28548,6 +28733,45 @@ component.options.__file = "resources/js/components/HeaderComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/OrdersComponent.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/OrdersComponent.vue ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _OrdersComponent_vue_vue_type_template_id_14426806_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OrdersComponent.vue?vue&type=template&id=14426806&scoped=true& */ "./resources/js/components/OrdersComponent.vue?vue&type=template&id=14426806&scoped=true&");
+/* harmony import */ var _OrdersComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OrdersComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/OrdersComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _OrdersComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _OrdersComponent_vue_vue_type_template_id_14426806_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _OrdersComponent_vue_vue_type_template_id_14426806_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "14426806",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/OrdersComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/RegisterComponent.vue":
 /*!*******************************************************!*\
   !*** ./resources/js/components/RegisterComponent.vue ***!
@@ -28674,6 +28898,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/OrdersComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/OrdersComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OrdersComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./OrdersComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/OrdersComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OrdersComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/RegisterComponent.vue?vue&type=script&lang=js&":
 /*!********************************************************************************!*\
   !*** ./resources/js/components/RegisterComponent.vue?vue&type=script&lang=js& ***!
@@ -28753,6 +28993,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeaderComponent_vue_vue_type_template_id_153bfd55_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeaderComponent_vue_vue_type_template_id_153bfd55_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HeaderComponent.vue?vue&type=template&id=153bfd55&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HeaderComponent.vue?vue&type=template&id=153bfd55&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/OrdersComponent.vue?vue&type=template&id=14426806&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/OrdersComponent.vue?vue&type=template&id=14426806&scoped=true& ***!
+  \************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrdersComponent_vue_vue_type_template_id_14426806_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrdersComponent_vue_vue_type_template_id_14426806_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrdersComponent_vue_vue_type_template_id_14426806_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./OrdersComponent.vue?vue&type=template&id=14426806&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/OrdersComponent.vue?vue&type=template&id=14426806&scoped=true&");
 
 
 /***/ }),
@@ -29422,6 +29679,330 @@ var staticRenderFns = [
     )
   },
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/OrdersComponent.vue?vue&type=template&id=14426806&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/OrdersComponent.vue?vue&type=template&id=14426806&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "mb-2" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          class: { active: _vm.modeId === 1 },
+          attrs: { type: "button" },
+          on: { click: _vm.changeQuantity },
+        },
+        [_vm._v("Мои активные")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          class: { active: _vm.modeId === 2 },
+          attrs: { type: "button" },
+          on: { click: _vm.changeQuantity },
+        },
+        [_vm._v("Мои все")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          class: { active: _vm.modeId === 3 && _vm.user.is_admin === 1 },
+          attrs: { type: "button" },
+          on: { click: _vm.changeQuantity },
+        },
+        [_vm._v("Активные заказы")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          class: { active: _vm.modeId === 4 && _vm.user.is_admin === 1 },
+          attrs: { type: "button" },
+          on: { click: _vm.changeQuantity },
+        },
+        [_vm._v("Все заказы")]
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "container-lg bg-main" }, [
+      _vm.orderList.length > 0
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "row back-color-neutral h-48 fs-18 fw-bold rounded-3 border border-1",
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-3 d-flex justify-content-center align-items-center",
+                },
+                [_vm._v("\n                Наименование\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-2 d-flex justify-content-center align-items-center",
+                },
+                [_vm._v("\n                Инф-я о предложении\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-2 d-flex justify-content-center align-items-center",
+                },
+                [_vm._v("\n                Состояние\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col d-flex justify-content-center align-items-center",
+                },
+                [_vm._v("\n                Общее кол-во\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col d-flex justify-content-center align-items-center",
+                },
+                [_vm._v("\n                Срок\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-2 d-flex justify-content-center align-items-center",
+                },
+                [_vm._v("\n                Цена\n            ")]
+              ),
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "div",
+        { key: _vm.componentKey },
+        _vm._l(_vm.orderList, function (order) {
+          return _c(
+            "div",
+            [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "row active-as h-48 fs-16 fw-normal rounded-3 border border-1",
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "col d-flex justify-content-start align-items-center",
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(order.orderNumber) +
+                          " от " +
+                          _vm._s(order.createDate) +
+                          "\n                    "
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "col-8 d-flex justify-content-start align-items-center text-danger",
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(order.stateName) +
+                          "\n                    "
+                      ),
+                    ]
+                  ),
+                ]
+              ),
+              _vm._v(" "),
+              _vm._l(order.orderSpcs, function (spc) {
+                return _c(
+                  "div",
+                  {
+                    staticClass:
+                      "row bg-white mh-48 fs-16 fw-normal rounded-3 border border-1",
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col-3 d-flex justify-content-center align-items-center",
+                      },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(spc.name) +
+                            "\n                    "
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col-2 d-flex justify-content-center align-items-center",
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "d-flex  justify-content-around align-items-center",
+                          },
+                          [
+                            _c("img", {
+                              staticClass: "ms-4",
+                              class: { invisible: spc.isLiquidity !== 1 },
+                              attrs: {
+                                src: "/img/flag.png",
+                                alt: "Л",
+                                title: "Ликвидный товар",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c("img", {
+                              staticClass: "ms-4",
+                              class: { invisible: spc.isDealer !== 1 },
+                              attrs: {
+                                src: "/img/star.png",
+                                alt: "Д",
+                                title: "Дилер",
+                              },
+                            }),
+                          ]
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-2 fs-12" },
+                      _vm._l(spc.orderStates, function (os) {
+                        return _c("div", [
+                          _vm._v(
+                            "\n                           " +
+                              _vm._s(os.quantity) +
+                              " - " +
+                              _vm._s(os.stateName) +
+                              "\n                        "
+                          ),
+                        ])
+                      }),
+                      0
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col d-flex justify-content-center align-items-center",
+                      },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(spc.quantity) +
+                            "\n                    "
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col d-flex justify-content-center align-items-center",
+                      },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(spc.period) +
+                            " дней\n                    "
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col-2 d-flex justify-content-center align-items-center",
+                      },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(spc.price) +
+                            " ₽\n                    "
+                        ),
+                      ]
+                    ),
+                  ]
+                )
+              }),
+            ],
+            2
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _vm.orderList.length === 0
+        ? _c("p", { staticClass: "fs-2 mb-30 mt-30" }, [
+            _vm._v("У вас нет заказов"),
+          ])
+        : _vm._e(),
+    ]),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

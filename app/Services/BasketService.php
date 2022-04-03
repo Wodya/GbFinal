@@ -57,12 +57,14 @@ class BasketService implements IBasketService
             $order->create_date = DB::raw('NOW()');
             $order->state_id = 10;
             $order->order_number = $orderNumber;
+            $order->is_finish = false;
 
             $order->save();
             $basketsDb = Basket::with('offer')->where("user_id", Auth::user()->id)->get();
             foreach($basketsDb as $basketDb){
                 OrderSpc::insert(['order_head_id' => $order->id, 'product_id' => $basketDb->offer->product_id, 'supplier_id' => $basketDb->offer->supplier_id,
-                    'period_min' => $basketDb->offer->period_min, 'period_max' => $basketDb->offer->period_max, 'price' => $basketDb->offer->price, 'quantity' => $basketDb->quantity]);
+                    'period_min' => $basketDb->offer->period_min, 'period_max' => $basketDb->offer->period_max,
+                    'price' => $basketDb->offer->price, 'quantity' => $basketDb->quantity]);
                 $basketDb->delete();
             }
             DB::commit();

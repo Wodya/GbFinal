@@ -19,6 +19,7 @@ Route::get('/basket', [App\Http\Controllers\BasketController::class, 'basket'])-
 Route::get('/basket/changeQuantity/{offerId}/{quantity}', [App\Http\Controllers\BasketController::class, 'changeQuantity'])->middleware(['auth'])->name('basketChangeQuantity');
 Route::get('/basket/deletePosition/{offerId}', [App\Http\Controllers\BasketController::class, 'deletePosition'])->middleware(['auth'])->name('basketDeletePosition');;
 Route::get('/basket/makeOrder/{orderNumber}', [App\Http\Controllers\BasketController::class, 'makeOrder'])->middleware(['auth'])->name('makeOrder');;
+Route::get('/order/myOrders', [App\Http\Controllers\OrderController::class, 'myOrders'])->middleware(['auth'])->name('myOrders');;
 
 Route::get('/register1', function () {
     return view('auth.register1');

@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,8 +19,8 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('users')->delete();
         DB::table('users')->insert(['id' => 1, 'name' => 'Богдасаров Олег', 'email' => 'w@w.ru', 'phone' => '+79151111111',
-            'password' => '$2y$10$BfJjfQInDWVV2W0VrXs90.Y847zsRY8KCWTpvTvFjSQ3ZTYzdTtH.', 'payer' => 'ООО "Памятная встреча"','consignee' => 'ООО "Светлый путь"',
-            'transport_company_id' => 1, 'distribution_point_id' => 1]);
+            'password' => Hash::make('www12345'), 'payer' => 'ООО "Памятная встреча"','consignee' => 'ООО "Светлый путь"',
+            'transport_company_id' => 1, 'distribution_point_id' => 1, 'is_admin' => 1]);
 
         DB::table('brand')->delete();
         DB::table('brand')->insert(['id' => 1, 'name' => 'ABS']);
@@ -61,6 +63,40 @@ class DatabaseSeeder extends Seeder
         DB::table('transport_company')->insert(['id' => 1, 'name' => 'СДЭК']);
         DB::table('transport_company')->insert(['id' => 2, 'name' => 'Озон экспресс']);
 
+        DB::table('basket')->delete();
         DB::table('basket')->insert(['user_id' => 1, 'offer_id' => 2, 'quantity' => 5]);
+        DB::table('basket')->insert(['user_id' => 1, 'offer_id' => 9, 'quantity' => 2]);
+
+        DB::table('order_head')->delete();
+        DB::table('order_spc')->delete();
+        DB::table('order_state')->delete();
+        DB::table('order_head')->insert(['id' => 1, 'user_id' => 1, 'state_id' => 10, 'order_number' => 'Секретный заказ № 1', 'is_finish' => 0,
+            'create_date' => Carbon::create(2022, 4, 2, 21, 12, 0)]);
+        DB::table('order_spc')->insert(['id' => 1, 'order_head_id' => 1, 'product_id' => 1, 'supplier_id' => 1, 'period_min' => 0, 'period_max' => 2, 'quantity' => 5, 'price' => 920 ]);
+        DB::table('order_state')->insert(['id' => 1, 'order_spc_id' => 1, 'quantity' => 2, 'state_id' => 10, 'comment' => '']);
+        DB::table('order_state')->insert(['id' => 2, 'order_spc_id' => 1, 'quantity' => 1, 'state_id' => 1010, 'comment' => 'Нет на складе']);
+        DB::table('order_state')->insert(['id' => 3, 'order_spc_id' => 1, 'quantity' => 2, 'state_id' => 40, 'comment' => '']);
+        DB::table('order_spc')->insert(['id' => 2, 'order_head_id' => 1, 'product_id' => 5, 'supplier_id' => 3, 'period_min' => 2, 'period_max' => 5, 'quantity' => 3, 'price' => 130 ]);
+        DB::table('order_state')->insert(['id' => 4, 'order_spc_id' => 2, 'quantity' => 1, 'state_id' => 10, 'comment' => '']);
+        DB::table('order_state')->insert(['id' => 5, 'order_spc_id' => 2, 'quantity' => 2, 'state_id' => 30, 'comment' => '']);
+
+        DB::table('order_head')->insert(['id' => 2, 'user_id' => 1, 'state_id' => 40, 'order_number' => 'Обычный заказ № 1', 'is_finish' => 1,
+            'create_date' => Carbon::create(2022, 4, 1, 18, 2, 0)]);
+        DB::table('order_spc')->insert(['id' => 3, 'order_head_id' => 2, 'product_id' => 1, 'supplier_id' => 1, 'period_min' => 1, 'period_max' => 2, 'quantity' => 5, 'price' => 720 ]);
+        DB::table('order_state')->insert(['id' => 6, 'order_spc_id' => 3, 'quantity' => 1, 'state_id' => 1010, 'comment' => 'Нет на складе']);
+        DB::table('order_state')->insert(['id' => 7, 'order_spc_id' => 3, 'quantity' => 4, 'state_id' => 40, 'comment' => '']);
+        DB::table('order_spc')->insert(['id' => 4, 'order_head_id' => 2, 'product_id' => 5, 'supplier_id' => 3, 'period_min' => 2, 'period_max' => 5, 'quantity' => 3, 'price' => 130 ]);
+        DB::table('order_state')->insert(['id' => 8, 'order_spc_id' => 4, 'quantity' => 3, 'state_id' => 40, 'comment' => '']);
+
+        DB::table('order_head')->insert(['id' => 3, 'user_id' => 1, 'state_id' => 20, 'order_number' => 'Супер-заказ № 100', 'is_finish' => 0,
+            'create_date' => Carbon::create(2022, 4, 2, 11, 52, 12)]);
+        DB::table('order_spc')->insert(['id' => 5, 'order_head_id' => 3, 'product_id' => 1, 'supplier_id' => 1, 'period_min' => 0, 'period_max' => 2, 'quantity' => 6, 'price' => 620 ]);
+        DB::table('order_state')->insert(['id' => 9, 'order_spc_id' => 5, 'quantity' => 2, 'state_id' => 20, 'comment' => '']);
+        DB::table('order_state')->insert(['id' => 10, 'order_spc_id' => 5, 'quantity' => 1, 'state_id' => 1020, 'comment' => 'Нет на складе']);
+        DB::table('order_state')->insert(['id' => 11, 'order_spc_id' => 5, 'quantity' => 3, 'state_id' => 40, 'comment' => '']);
+        DB::table('order_spc')->insert(['id' => 6, 'order_head_id' => 3, 'product_id' => 5, 'supplier_id' => 3, 'period_min' => 2, 'period_max' => 5, 'quantity' => 4, 'price' => 1300 ]);
+        DB::table('order_state')->insert(['id' => 12, 'order_spc_id' => 6, 'quantity' => 1, 'state_id' => 10, 'comment' => '']);
+        DB::table('order_state')->insert(['id' => 13, 'order_spc_id' => 6, 'quantity' => 3, 'state_id' => 30, 'comment' => '']);
+
     }
 }

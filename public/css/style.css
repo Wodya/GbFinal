@@ -190,6 +190,9 @@ body {
 .h-48{
     height: 48px;
 }
+.mh-48{
+    min-height: 48px;
+}
 
 .ms-30{
     margin-left: 30px;
@@ -202,6 +205,9 @@ body {
 }
 .mb-30{
     margin-bottom: 30px;
+}
+.fs-12{
+    font-size: 12px;
 }
 .fs-16{
     font-size: 16px;

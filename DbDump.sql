@@ -39,7 +39,7 @@ CREATE TABLE `basket` (
 
 LOCK TABLES `basket` WRITE;
 /*!40000 ALTER TABLE `basket` DISABLE KEYS */;
-INSERT INTO `basket` VALUES (1,1,2,17,NULL,'2022-03-20 17:53:42'),(2,1,2,5,NULL,NULL),(4,1,5,2,NULL,'2022-03-20 18:05:52');
+INSERT INTO `basket` VALUES (3,1,2,5,NULL,NULL),(4,1,9,2,NULL,NULL);
 /*!40000 ALTER TABLE `basket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +136,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +145,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2022_02_14_180857_create_table_brand',1),(6,'2022_02_14_182904_create_table_product',1),(7,'2022_02_14_183831_create_supplier',1),(8,'2022_02_14_183917_create_offer',1),(9,'2022_03_12_140733_create_table_order',1),(10,'2022_03_12_184312_create_distribution_point',1),(11,'2022_03_12_184945_create_transport_company',1),(12,'2022_03_17_195000_create_table_basket',1);
+INSERT INTO `migrations` VALUES (37,'2014_10_12_000000_create_users_table',1),(38,'2014_10_12_100000_create_password_resets_table',1),(39,'2019_08_19_000000_create_failed_jobs_table',1),(40,'2019_12_14_000001_create_personal_access_tokens_table',1),(41,'2022_02_14_180857_create_table_brand',1),(42,'2022_02_14_182904_create_table_product',1),(43,'2022_02_14_183831_create_supplier',1),(44,'2022_02_14_183917_create_offer',1),(45,'2022_03_12_140733_create_table_order',1),(46,'2022_03_12_184312_create_distribution_point',1),(47,'2022_03_12_184945_create_transport_company',1),(48,'2022_03_17_195000_create_table_basket',1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,10 +194,11 @@ CREATE TABLE `order_head` (
   `create_date` datetime NOT NULL,
   `state_id` int NOT NULL,
   `order_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_finish` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,6 +207,7 @@ CREATE TABLE `order_head` (
 
 LOCK TABLES `order_head` WRITE;
 /*!40000 ALTER TABLE `order_head` DISABLE KEYS */;
+INSERT INTO `order_head` VALUES (1,1,'2022-04-02 21:12:00',10,'Секретный заказ № 1',0,NULL,NULL),(2,1,'2022-04-01 18:02:00',40,'Обычный заказ № 1',1,NULL,NULL),(3,1,'2022-04-02 11:52:12',20,'Супер-заказ № 100',0,NULL,NULL);
 /*!40000 ALTER TABLE `order_head` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,7 +230,7 @@ CREATE TABLE `order_spc` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,6 +239,7 @@ CREATE TABLE `order_spc` (
 
 LOCK TABLES `order_spc` WRITE;
 /*!40000 ALTER TABLE `order_spc` DISABLE KEYS */;
+INSERT INTO `order_spc` VALUES (1,1,1,1,0,2,5,920.00,NULL,NULL),(2,1,5,3,2,5,3,130.00,NULL,NULL),(3,2,1,1,1,2,5,720.00,NULL,NULL),(4,2,5,3,2,5,3,130.00,NULL,NULL),(5,3,1,1,0,2,6,620.00,NULL,NULL),(6,3,5,3,2,5,4,1300.00,NULL,NULL);
 /*!40000 ALTER TABLE `order_spc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,7 +259,7 @@ CREATE TABLE `order_state` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -265,6 +268,7 @@ CREATE TABLE `order_state` (
 
 LOCK TABLES `order_state` WRITE;
 /*!40000 ALTER TABLE `order_state` DISABLE KEYS */;
+INSERT INTO `order_state` VALUES (1,1,10,2,'',NULL,NULL),(2,1,1010,1,'Нет на складе',NULL,NULL),(3,1,40,2,'',NULL,NULL),(4,2,10,1,'',NULL,NULL),(5,2,30,2,'',NULL,NULL),(6,3,1010,1,'Нет на складе',NULL,NULL),(7,3,40,4,'',NULL,NULL),(8,4,40,3,'',NULL,NULL),(9,5,20,2,'',NULL,NULL),(10,5,1020,1,'Нет на складе',NULL,NULL),(11,5,40,3,'',NULL,NULL),(12,6,10,1,'',NULL,NULL),(13,6,30,3,'',NULL,NULL);
 /*!40000 ALTER TABLE `order_state` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -364,6 +368,7 @@ DROP TABLE IF EXISTS `state`;
 CREATE TABLE `state` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_finish` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -376,7 +381,7 @@ CREATE TABLE `state` (
 
 LOCK TABLES `state` WRITE;
 /*!40000 ALTER TABLE `state` DISABLE KEYS */;
-INSERT INTO `state` VALUES (10,'Новый',NULL,NULL),(20,'В работе',NULL,NULL),(30,'На складе',NULL,NULL),(40,'Отгружено',NULL,NULL),(50,'В архиве',NULL,NULL),(1010,'Отклонено поставщиком',NULL,NULL),(1020,'Отменено',NULL,NULL);
+INSERT INTO `state` VALUES (10,'Новый',0,NULL,NULL),(20,'В работе',0,NULL,NULL),(30,'На складе',0,NULL,NULL),(40,'Отгружено',1,NULL,NULL),(1010,'Отклонено поставщиком',1,NULL,NULL),(1020,'Отменено',1,NULL,NULL);
 /*!40000 ALTER TABLE `state` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -453,6 +458,7 @@ CREATE TABLE `users` (
   `consignee` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `transport_company_id` int NOT NULL,
   `distribution_point_id` int NOT NULL,
+  `is_admin` int NOT NULL DEFAULT '0',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -467,7 +473,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Богдасаров Олег','w@w.ru',NULL,'$2y$10$BfJjfQInDWVV2W0VrXs90.Y847zsRY8KCWTpvTvFjSQ3ZTYzdTtH.','+79151111111','ООО \"Памятная встреча\"','ООО \"Светлый путь\"',1,1,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'Богдасаров Олег','w@w.ru',NULL,'$2y$10$OyRaqPzYco/q9nble/nMROj8S1./Z5SHqVw27sUDv6fUcxFwvjsIe','+79151111111','ООО \"Памятная встреча\"','ООО \"Светлый путь\"',1,1,1,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -480,4 +486,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-20 21:53:05
+-- Dump completed on 2022-04-03 20:20:49

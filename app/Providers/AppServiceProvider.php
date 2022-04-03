@@ -6,7 +6,9 @@ use App\Services\BasketService;
 use App\Services\CommonService;
 use App\Services\IBasketService;
 use App\Services\ICommonService;
+use App\Services\IOrderService;
 use App\Services\ISearchService;
+use App\Services\OrderService;
 use App\Services\SearchService;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,6 +29,9 @@ class AppServiceProvider extends ServiceProvider
         });
         $this->app->bind( ISearchService::class,function (){
             return new SearchService();
+        });
+        $this->app->bind( IOrderService::class,function (){
+            return new OrderService();
         });
     }
 

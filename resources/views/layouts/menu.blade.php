@@ -14,7 +14,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
+            <a href="{{route("myOrders")}}" class="nav-link d-flex align-items-center color-white menu-font-as" aria-current="page">
                 <img src="{{ asset('img/icon/orders.png') }}" width="24" height="24" class="me-3"><use xlink:href="#home"></use>
                 Мои заказы
             </a>

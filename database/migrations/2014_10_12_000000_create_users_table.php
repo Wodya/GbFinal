@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string("consignee");
             $table->integer("transport_company_id");
             $table->integer("distribution_point_id");
+            $table->integer("is_admin")->default(0);
 
             $table->rememberToken();
             $table->timestamps();

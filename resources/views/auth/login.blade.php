@@ -16,6 +16,9 @@
         <img src="img\logo.png" class="register-logo" alt="">
         <form class="bg-white register-form fw-normal" method="POST">
             @csrf
+            @if(count($errors) > 0)
+                <p class="text-danger">Ошибка аутентификации</p>
+            @endif
             <div class="mb-3">
                 <label for="email" class="form-label">E-mail</label>
                 <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">

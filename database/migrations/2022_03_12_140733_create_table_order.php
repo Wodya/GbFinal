@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('state', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('is_finish');
             $table->timestamps();
         });
         Schema::create('order_head', function (Blueprint $table) {
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->dateTime('create_date');
             $table->integer('state_id');
             $table->string('order_number');
+            $table->boolean('is_finish');
             $table->timestamps();
         });
         Schema::create('order_spc', function (Blueprint $table) {
@@ -48,14 +50,13 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::table('state')->insert(['id' => 10, 'name' => 'Новый']);
-        DB::table('state')->insert(['id' => 20, 'name' => 'В работе']);
-        DB::table('state')->insert(['id' => 30, 'name' => 'На складе']);
-        DB::table('state')->insert(['id' => 40, 'name' => 'Отгружено']);
-        DB::table('state')->insert(['id' => 50, 'name' => 'В архиве']);
+        DB::table('state')->insert(['id' => 10, 'name' => 'Новый', 'is_finish' => false]);
+        DB::table('state')->insert(['id' => 20, 'name' => 'В работе', 'is_finish' => false]);
+        DB::table('state')->insert(['id' => 30, 'name' => 'На складе', 'is_finish' => false]);
+        DB::table('state')->insert(['id' => 40, 'name' => 'Отгружено', 'is_finish' => true]);
 
-        DB::table('state')->insert(['id' => 1010, 'name' => 'Отклонено поставщиком']);
-        DB::table('state')->insert(['id' => 1020, 'name' => 'Отменено']);
+        DB::table('state')->insert(['id' => 1010, 'name' => 'Отклонено поставщиком', 'is_finish' => true]);
+        DB::table('state')->insert(['id' => 1020, 'name' => 'Отменено', 'is_finish' => true]);
     }
 
     /**
