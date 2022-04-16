@@ -241,3 +241,12 @@ body {
     opacity:1;
     transition: 1s ease;
 }
+.datepicker_input{
+    width: 120px;
+}
+.height-30{
+    height: 30px;
+}
+.text-muted{
+    display: none;
+}

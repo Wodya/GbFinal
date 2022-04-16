@@ -3,6 +3,8 @@
 <head>
     @include('layouts.head')
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script defer="" src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/css/datepicker-bs5.min.css">
 </head>
 
 <body>
@@ -15,13 +17,7 @@
             @yield('content')
         </div>
     </div>
-@yield('script')
+    @yield('script')
 ></div>
 </body>
 </html>
-<script>
-    import HeaderComponent from "../../js/components/HeaderComponent";
-    export default {
-        components: {HeaderComponent}
-    }
-</script>

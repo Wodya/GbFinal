@@ -20,7 +20,11 @@ Route::get('/basket/changeQuantity/{offerId}/{quantity}', [App\Http\Controllers\
 Route::get('/basket/deletePosition/{offerId}', [App\Http\Controllers\BasketController::class, 'deletePosition'])->middleware(['auth'])->name('basketDeletePosition');;
 Route::get('/basket/makeOrder/{orderNumber}', [App\Http\Controllers\BasketController::class, 'makeOrder'])->middleware(['auth'])->name('makeOrder');;
 Route::get('/order/myOrders', [App\Http\Controllers\OrderController::class, 'myOrders'])->middleware(['auth'])->name('myOrders');;
+Route::get('/order/myAllOrders/{dateFrom?}/{dateTo?}', [App\Http\Controllers\OrderController::class, 'myAllOrders'])->middleware(['auth'])->name('myAllOrders');;
 
+Route::get('/welcome', function () {
+    return view('welcome');
+});
 Route::get('/register1', function () {
     return view('auth.register1');
 });

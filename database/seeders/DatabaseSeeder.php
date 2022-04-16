@@ -98,5 +98,25 @@ class DatabaseSeeder extends Seeder
         DB::table('order_state')->insert(['id' => 12, 'order_spc_id' => 6, 'quantity' => 1, 'state_id' => 10, 'comment' => '']);
         DB::table('order_state')->insert(['id' => 13, 'order_spc_id' => 6, 'quantity' => 3, 'state_id' => 30, 'comment' => '']);
 
+        $date = Carbon::create(2022, 3, 1, 11, 0, 0);
+        for ($i=0; $i<20; $i++) {
+            $orderHeadId = DB::table('order_head')->max("id") + 1;
+            $orderSpcId = DB::table('order_spc')->max("id") + 1;
+            $orderStateId = DB::table('order_state')->max("id") + 1;
+
+            DB::table('order_head')->insert(['id' => $orderHeadId, 'user_id' => 1, 'state_id' => 20, 'order_number' => 'Супер-заказ № 100', 'is_finish' => 0,
+                'create_date' => $date]);
+            DB::table('order_spc')->insert(['id' => $orderSpcId, 'order_head_id' => $orderHeadId, 'product_id' => 1, 'supplier_id' => 1, 'period_min' => 0, 'period_max' => 2, 'quantity' => 6, 'price' => 620]);
+            DB::table('order_state')->insert(['id' => $orderStateId++, 'order_spc_id' => $orderSpcId, 'quantity' => 2, 'state_id' => 20, 'comment' => '']);
+            DB::table('order_state')->insert(['id' => $orderStateId++, 'order_spc_id' => $orderSpcId, 'quantity' => 1, 'state_id' => 1020, 'comment' => 'Нет на складе']);
+            DB::table('order_state')->insert(['id' => $orderStateId++, 'order_spc_id' => $orderSpcId, 'quantity' => 3, 'state_id' => 40, 'comment' => '']);
+            $orderSpcId++;
+            DB::table('order_spc')->insert(['id' => $orderSpcId, 'order_head_id' => $orderHeadId, 'product_id' => 5, 'supplier_id' => 3, 'period_min' => 2, 'period_max' => 5, 'quantity' => 4, 'price' => 1300]);
+            DB::table('order_state')->insert(['id' => $orderStateId++, 'order_spc_id' => $orderSpcId, 'quantity' => 1, 'state_id' => 10, 'comment' => '']);
+            DB::table('order_state')->insert(['id' => $orderStateId++, 'order_spc_id' => $orderSpcId, 'quantity' => 3, 'state_id' => 30, 'comment' => '']);
+
+            $date = $date->addDay(-1);
+        }
+
     }
 }

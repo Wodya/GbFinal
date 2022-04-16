@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title','| Codermen.com ')
+@section('title','| Автостэлс ')
 
 @section('content')
     <div class="d-flex justify-content-center align-items-center flex-fill">

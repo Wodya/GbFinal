@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="mb-2">
-            <button  type="button" class="btn btn-primary" :class="{active : modeId === 1}" @click="changeQuantity">Мои активные</button>
-            <button  type="button" class="btn btn-primary" :class="{active : modeId === 2}" @click="changeQuantity">Мои все</button>
-            <button  type="button" class="btn btn-primary" :class="{active : modeId === 3 && user.is_admin===1}" @click="changeQuantity">Активные заказы</button>
-            <button  type="button" class="btn btn-primary" :class="{active : modeId === 4 && user.is_admin===1}" @click="changeQuantity">Все заказы</button>
+        <div v-if="modeId===2" class="d-flex align-items-center mt-1 mb-2">
+            <input type="text" id="dateFrom" class="date datepicker_input" v-model="dateFrom">
+            <input type="text" id="dateTo" class="date datepicker_input ms-3" v-model="dateTo">
+            <button type="button" class="btn btn-outline-primary btn-sm ms-30 height-30" @click="refresh">Обновить</button>
         </div>
+
         <div class="container-lg bg-main" >
             <div v-if="orderList.length > 0" class="row back-color-neutral h-48 fs-18 fw-bold rounded-3 border border-1">
                 <div class="col-3 d-flex justify-content-center align-items-center">
@@ -79,15 +79,18 @@ export default {
         modeId : Number,
         orderList : Array,
         changeQuantityUrl : String,
+        dateFrom : String,
+        dateTo : String,
+        refreshUrl : String,
     },
     data(){
         return {
             componentKey: 0,
-            orderNumberStr : "Заказ"
+            orderNumberStr : "Заказ",
+
         }
     },
     mounted(){
-        console.log(this.orderList);
     },
     methods : {
         progress(event,progress,stepValue){
@@ -161,7 +164,14 @@ export default {
             rq.open("GET", url);
             rq.send();
 
-        }
+        },
+        refresh: function() {
+            let url = this.refreshUrl;
+            url = url.replace("dateFrom", document.querySelector("#dateFrom").value);
+            url = url.replace("dateTo", document.querySelector("#dateTo").value);
+            console.log(url);
+            window.location = url;
+        },
     },
 }
 </script>

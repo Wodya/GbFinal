@@ -19,10 +19,20 @@ sail artisan migrate
 sail artisan migrate:rollback 1
 sail artisan db:seed
 
+php artisan optimize
+	php artisan config:cache
+	php artisan view:clear
+	php artisan route:cache
+	php artisan cache:clear
+
 sail artisan make:controller SearchController
 
 Если порт 3306 занят, то очищаем что-то там
 netcfg -d 
+
+Если ошибка "There is no existing directory at \"/mnt/d/GIT/GbFinal/storage/logs\" and it could not be created: Permission denied"
+Delete bootstrap/cache/config.php
+Delete all log files in storage/logs
 
 Новая установка
 В Ubuntu:

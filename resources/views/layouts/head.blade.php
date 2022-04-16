@@ -6,4 +6,4 @@
 <link rel="stylesheet" type="text/css" href="{{ url('/css/style.css') }}" />
 
 @yield('style')
-<title>CoderMen @yield('title')</title>
+<title>Автостелс. @yield('title')</title>
