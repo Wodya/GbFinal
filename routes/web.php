@@ -17,10 +17,14 @@ Route::get('/search_step2/{productId}', [App\Http\Controllers\SearchController::
 Route::get('/search_step2/changeQuantity/{offerId}/{quantity}', [App\Http\Controllers\SearchController::class, 'changeQuantity'])->middleware(['auth'])->name('step2ChangeQuantity');
 Route::get('/basket', [App\Http\Controllers\BasketController::class, 'basket'])->middleware(['auth'])->name('basket');
 Route::get('/basket/changeQuantity/{offerId}/{quantity}', [App\Http\Controllers\BasketController::class, 'changeQuantity'])->middleware(['auth'])->name('basketChangeQuantity');
-Route::get('/basket/deletePosition/{offerId}', [App\Http\Controllers\BasketController::class, 'deletePosition'])->middleware(['auth'])->name('basketDeletePosition');;
-Route::get('/basket/makeOrder/{orderNumber}', [App\Http\Controllers\BasketController::class, 'makeOrder'])->middleware(['auth'])->name('makeOrder');;
-Route::get('/order/myOrders', [App\Http\Controllers\OrderController::class, 'myOrders'])->middleware(['auth'])->name('myOrders');;
-Route::get('/order/myAllOrders/{dateFrom?}/{dateTo?}', [App\Http\Controllers\OrderController::class, 'myAllOrders'])->middleware(['auth'])->name('myAllOrders');;
+Route::get('/basket/deletePosition/{offerId}', [App\Http\Controllers\BasketController::class, 'deletePosition'])->middleware(['auth'])->name('basketDeletePosition');
+Route::get('/basket/makeOrder/{orderNumber}', [App\Http\Controllers\BasketController::class, 'makeOrder'])->middleware(['auth'])->name('makeOrder');
+Route::get('/order/myOrders', [App\Http\Controllers\OrderController::class, 'myOrders'])->middleware(['auth'])->name('myOrders');
+Route::get('/order/myAllOrders/{dateFrom?}/{dateTo?}', [App\Http\Controllers\OrderController::class, 'myAllOrders'])->middleware(['auth'])->name('myAllOrders');
+Route::get('/order/orders', [App\Http\Controllers\OrderController::class, 'orders'])->middleware(['auth'])->name('orders');
+Route::get('/order/allOrders/{dateFrom?}/{dateTo?}', [App\Http\Controllers\OrderController::class, 'allOrders'])->middleware(['auth'])->name('allOrders');
+Route::get('/order/changeOrderState/{orderSpcId}/{quantity}/{oldStateId}/{newStateId}', [App\Http\Controllers\OrderController::class, 'changeOrderState'])->
+    middleware(['auth'])->name('changeOrderState');
 
 Route::get('/welcome', function () {
     return view('welcome');

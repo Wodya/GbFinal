@@ -31,7 +31,10 @@ a:active
 .active-as{
     background-color: #42C6B6;
 }
-
+.btn-outline-as {
+    color: green;
+    border-color: #42C6B6;
+}
 .color-light-blue {
     color: #BDF1EA;
 }
@@ -224,8 +227,11 @@ body {
 .invisible {
      visibility: hidden;
 }
-.step2-quantity-div {
+.width-120 {
     width: 120px;
+}
+.width-60 {
+    width: 60px;
 }
 .step2-quantity{
     width: 20px;

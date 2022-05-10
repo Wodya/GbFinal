@@ -5746,6 +5746,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "OrdersComponent",
@@ -5753,101 +5792,84 @@ __webpack_require__.r(__webpack_exports__);
     user: Object,
     modeId: Number,
     orderList: Array,
-    changeQuantityUrl: String,
+    changeStateUrl: String,
     dateFrom: String,
     dateTo: String,
-    refreshUrl: String
+    refreshUrlMyOrders: String,
+    refreshUrlOrders: String,
+    orderStates: Array
   },
   data: function data() {
     return {
-      componentKey: 0,
-      orderNumberStr: "Заказ"
+      orderNumberStr: "Заказ",
+      changeModal: null,
+      orderSpcId: Number,
+      oldStateId: Number,
+      newStateId: Number,
+      quantity: Number,
+      errorStr: String
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.changeModal = new bootstrap.Modal(document.getElementById('changeModal'), {});
+    this.clearChangeModal();
+  },
   methods: {
     progress: function progress(event, _progress, stepValue) {// console.log(stepValue);
     },
     progress_end: function progress_end(event) {// console.log("Circle progress end");
     },
-    changeQuantity: function changeQuantity(offerId, quantity) {
-      console.log(this.offers);
-      console.log("changeQuantity: offerId=".concat(offerId, ", quantity=").concat(quantity));
-      var rq = new XMLHttpRequest();
-
-      rq.onreadystatechange = function (vm) {
-        if (this.readyState === XMLHttpRequest.DONE) {
-          if (this.status === 200) {
-            var row = vm.offers.find(function (el) {
-              return el.offerId === offerId;
-            });
-            row.basket_quantity += quantity;
-            vm.componentKey += 1;
-            console.log(row.basket_quantity);
-          } else {
-            console.log("Error changeQuantity");
-          }
-        }
-      }.bind(rq, this);
-
-      var url = this.changeQuantityUrl;
-      url = url.replace("offerId", offerId);
-      url = url.replace("quantity", quantity);
-      console.log(url);
-      rq.open("GET", url);
-      rq.send();
-    },
-    deletePosition: function deletePosition(offerId) {
-      var rq = new XMLHttpRequest();
-
-      rq.onreadystatechange = function (vm) {
-        if (this.readyState === XMLHttpRequest.DONE) {
-          if (this.status === 200) {
-            var row = vm.offers.findIndex(function (el) {
-              return el.offerId === offerId;
-            });
-            vm.offers.splice(row, 1);
-            vm.componentKey += 1;
-          } else {
-            console.log("Error deletePosition");
-          }
-        }
-      }.bind(rq, this);
-
-      var url = this.deletePositionUrl;
-      url = url.replace("offerId", offerId);
-      console.log(url);
-      rq.open("GET", url);
-      rq.send();
-    },
-    makeOrder: function makeOrder() {
-      console.log("makeOrder");
-      var rq = new XMLHttpRequest();
-
-      rq.onreadystatechange = function (vm) {
-        if (this.readyState === XMLHttpRequest.DONE) {
-          if (this.status === 200) {
-            console.log("Order made");
-            window.location.reload();
-            vm.componentKey += 1;
-          } else {
-            console.log("Error makeOrder");
-          }
-        }
-      }.bind(rq, this);
-
-      var url = this.makeOrderUrl;
-      url = url.replace("orderNumber", this.orderNumberStr);
-      console.log(url);
-      rq.open("GET", url);
-      rq.send();
+    sortedStates: function sortedStates(states) {
+      return states.sort(function (a, b) {
+        return a.stateId - b.stateId;
+      });
     },
     refresh: function refresh() {
-      var url = this.refreshUrl;
+      var url = this.modeId === 2 ? this.refreshUrlMyOrders : this.refreshUrlOrders;
       url = url.replace("dateFrom", document.querySelector("#dateFrom").value);
       url = url.replace("dateTo", document.querySelector("#dateTo").value);
       console.log(url);
       window.location = url;
+    },
+    clearChangeModal: function clearChangeModal() {
+      this.oldStateId = 0;
+      this.newStateId = 0;
+      this.quantity = 1;
+      this.errorStr = "";
+      this.changeModal.hide();
+    },
+    showChangeModal: function showChangeModal($orderSpcId) {
+      this.orderSpcId = $orderSpcId;
+      this.changeModal.show();
+    },
+    changeState: function changeState() {
+      console.log(this.offers);
+      console.log("changeState: orderSpcId=".concat(this.orderSpcId, ", oldStateId=").concat(this.oldStateId, ", newStateId=").concat(this.newStateId, ", quantity=").concat(this.quantity));
+      var rq = new XMLHttpRequest();
+
+      rq.onreadystatechange = function (vm) {
+        if (this.readyState === XMLHttpRequest.DONE) {
+          if (this.status === 200) {
+            console.log(this.responseText);
+
+            if (this.responseText === "") {
+              vm.clearChangeModal();
+              window.location.reload();
+            } else vm.errorStr = this.responseText;
+          } else {
+            console.log("Error changeState");
+          }
+        }
+      }.bind(rq, this);
+
+      var url = this.changeStateUrl;
+      url = url.replace("orderSpcId", this.orderSpcId.toString());
+      url = url.replace("oldStateId", this.oldStateId.toString());
+      url = url.replace("newStateId", this.newStateId.toString());
+      url = url.replace("quantity", this.quantity.toString());
+      console.log(url);
+      rq.open("GET", url);
+      rq.send();
     }
   }
 });
@@ -29741,7 +29763,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.modeId === 2
+    _vm.modeId === 2 || _vm.modeId === 4
       ? _c("div", { staticClass: "d-flex align-items-center mt-1 mb-2" }, [
           _c("input", {
             directives: [
@@ -29790,7 +29812,7 @@ var render = function () {
           _c(
             "button",
             {
-              staticClass: "btn btn-outline-primary btn-sm ms-30 height-30",
+              staticClass: "btn btn-outline-as btn-sm ms-30 height-30",
               attrs: { type: "button" },
               on: { click: _vm.refresh },
             },
@@ -29799,75 +29821,86 @@ var render = function () {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _c("div", { staticClass: "container-lg bg-main" }, [
-      _vm.orderList.length > 0
-        ? _c(
-            "div",
-            {
-              staticClass:
-                "row back-color-neutral h-48 fs-18 fw-bold rounded-3 border border-1",
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "col-3 d-flex justify-content-center align-items-center",
-                },
-                [_vm._v("\n                Наименование\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "col-2 d-flex justify-content-center align-items-center",
-                },
-                [_vm._v("\n                Инф-я о предложении\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "col-2 d-flex justify-content-center align-items-center",
-                },
-                [_vm._v("\n                Состояние\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "col d-flex justify-content-center align-items-center",
-                },
-                [_vm._v("\n                Общее кол-во\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "col d-flex justify-content-center align-items-center",
-                },
-                [_vm._v("\n                Срок\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "col-2 d-flex justify-content-center align-items-center",
-                },
-                [_vm._v("\n                Цена\n            ")]
-              ),
-            ]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "div",
-        { key: _vm.componentKey },
+    _c(
+      "div",
+      { staticClass: "container-lg bg-main" },
+      [
+        _vm.orderList.length > 0
+          ? _c(
+              "div",
+              {
+                staticClass:
+                  "row back-color-neutral h-48 fs-18 fw-bold rounded-3 border border-1",
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "col-3 d-flex justify-content-center align-items-center",
+                  },
+                  [_vm._v("\n                Наименование\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "col-2 d-flex justify-content-center align-items-center",
+                  },
+                  [
+                    _vm._v(
+                      "\n                Инф-я о предложении\n            "
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "col-2 d-flex justify-content-center align-items-center",
+                  },
+                  [_vm._v("\n                Состояние\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "col d-flex justify-content-center align-items-center",
+                  },
+                  [_vm._v("\n                Общее кол-во\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "col d-flex justify-content-center align-items-center",
+                  },
+                  [_vm._v("\n                Срок\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "col-2 d-flex justify-content-center align-items-center",
+                  },
+                  [_vm._v("\n                Цена\n            ")]
+                ),
+                _vm._v(" "),
+                _vm.modeId === 3 || _vm.modeId === 4
+                  ? _c("div", {
+                      staticClass:
+                        "col d-flex justify-content-center align-items-center",
+                    })
+                  : _vm._e(),
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
         _vm._l(_vm.orderList, function (order) {
           return _c(
             "div",
@@ -29887,11 +29920,11 @@ var render = function () {
                     },
                     [
                       _vm._v(
-                        "\n                        " +
+                        "\n                    " +
                           _vm._s(order.orderNumber) +
                           " от " +
                           _vm._s(order.createDate) +
-                          "\n                    "
+                          "\n                "
                       ),
                     ]
                   ),
@@ -29904,9 +29937,9 @@ var render = function () {
                     },
                     [
                       _vm._v(
-                        "\n                        " +
+                        "\n                    " +
                           _vm._s(order.stateName) +
-                          "\n                    "
+                          "\n                "
                       ),
                     ]
                   ),
@@ -29929,9 +29962,9 @@ var render = function () {
                       },
                       [
                         _vm._v(
-                          "\n                        " +
+                          "\n                    " +
                             _vm._s(spc.name) +
-                            "\n                    "
+                            "\n                "
                         ),
                       ]
                     ),
@@ -29977,14 +30010,14 @@ var render = function () {
                     _c(
                       "div",
                       { staticClass: "col-2 fs-12" },
-                      _vm._l(spc.orderStates, function (os) {
+                      _vm._l(_vm.sortedStates(spc.orderStates), function (os) {
                         return _c("div", [
                           _vm._v(
-                            "\n                           " +
+                            "\n                       " +
                               _vm._s(os.quantity) +
                               " - " +
                               _vm._s(os.stateName) +
-                              "\n                        "
+                              "\n                    "
                           ),
                         ])
                       }),
@@ -29999,9 +30032,9 @@ var render = function () {
                       },
                       [
                         _vm._v(
-                          "\n                        " +
+                          "\n                    " +
                             _vm._s(spc.quantity) +
-                            "\n                    "
+                            "\n                "
                         ),
                       ]
                     ),
@@ -30014,9 +30047,9 @@ var render = function () {
                       },
                       [
                         _vm._v(
-                          "\n                        " +
+                          "\n                    " +
                             _vm._s(spc.period) +
-                            " дней\n                    "
+                            " дней\n                "
                         ),
                       ]
                     ),
@@ -30029,12 +30062,33 @@ var render = function () {
                       },
                       [
                         _vm._v(
-                          "\n                        " +
+                          "\n                    " +
                             _vm._s(spc.price) +
-                            " ₽\n                    "
+                            " ₽\n                "
                         ),
                       ]
                     ),
+                    _vm._v(" "),
+                    _vm.modeId === 3 || _vm.modeId === 4
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col d-flex justify-content-center align-items-center",
+                          },
+                          [
+                            _c("img", {
+                              staticClass: "fadein",
+                              attrs: { src: "/img/edit.png", alt: "Ред" },
+                              on: {
+                                click: function ($event) {
+                                  return _vm.showChangeModal(spc.id)
+                                },
+                              },
+                            }),
+                          ]
+                        )
+                      : _vm._e(),
                   ]
                 )
               }),
@@ -30042,18 +30096,228 @@ var render = function () {
             2
           )
         }),
-        0
-      ),
-      _vm._v(" "),
-      _vm.orderList.length === 0
-        ? _c("p", { staticClass: "fs-2 mb-30 mt-30" }, [
-            _vm._v("У вас нет заказов"),
-          ])
-        : _vm._e(),
-    ]),
+        _vm._v(" "),
+        _vm.orderList.length === 0
+          ? _c("p", { staticClass: "fs-2 mb-30 mt-30" }, [
+              _vm._v("У вас нет заказов"),
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "changeModal",
+              "data-bs-backdrop": "static",
+              "data-bs-keyboard": "false",
+              tabindex: "-1",
+              "aria-labelledby": "staticBackdropLabel",
+              "aria-hidden": "true",
+            },
+          },
+          [
+            _c("div", { staticClass: "modal-dialog modal-dialog-centered" }, [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "flex mb-2" }, [
+                    _c("p", { staticClass: "mb-1" }, [
+                      _vm._v("Начальный статус"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.oldStateId,
+                            expression: "oldStateId",
+                          },
+                        ],
+                        staticClass: "form-select",
+                        attrs: { "aria-label": "Default select example" },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.oldStateId = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { value: "0" } }, [
+                          _vm._v("Выберите статус"),
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.orderStates, function (state) {
+                          return _c(
+                            "option",
+                            { domProps: { value: state.id } },
+                            [_vm._v(_vm._s(state.name))]
+                          )
+                        }),
+                      ],
+                      2
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flex mb-2" }, [
+                    _c("p", { staticClass: "mb-1" }, [
+                      _vm._v("Конечный статус"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newStateId,
+                            expression: "newStateId",
+                          },
+                        ],
+                        staticClass: "form-select",
+                        attrs: { "aria-label": "Default select example" },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.newStateId = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { value: "0" } }, [
+                          _vm._v("Выберите статус"),
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.orderStates, function (state) {
+                          return _c(
+                            "option",
+                            { domProps: { value: state.id } },
+                            [_vm._v(_vm._s(state.name))]
+                          )
+                        }),
+                      ],
+                      2
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flex" }, [
+                    _c("p", { staticClass: "mb-1" }, [_vm._v("Количество")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.quantity,
+                          expression: "quantity",
+                        },
+                      ],
+                      staticClass: "count width-60",
+                      attrs: { type: "number", name: "qty", min: "1" },
+                      domProps: { value: _vm.quantity },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.quantity = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _vm.errorStr !== ""
+                    ? _c("p", { staticClass: "color-attention" }, [
+                        _vm._v(_vm._s(_vm.errorStr)),
+                      ])
+                    : _vm._e(),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary",
+                      attrs: { type: "button", "data-bs-dismiss": "modal" },
+                    },
+                    [_vm._v("Отмена")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn",
+                      class: [
+                        "btn",
+                        {
+                          "btn-primary":
+                            _vm.oldStateId > 0 && _vm.newStateId > 0,
+                          "btn-secondary disabled":
+                            _vm.oldStateId === 0 || _vm.newStateId === 0,
+                        },
+                      ],
+                      attrs: { type: "button" },
+                      on: { click: _vm.changeState },
+                    },
+                    [_vm._v("Изменить")]
+                  ),
+                ]),
+              ]),
+            ]),
+          ]
+        ),
+      ],
+      2
+    ),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "staticBackdropLabel" } },
+        [_vm._v("Изменение статуса")]
+      ),
+      _vm._v(" "),
+      _c("button", {
+        staticClass: "btn-close",
+        attrs: {
+          type: "button",
+          "data-bs-dismiss": "modal",
+          "aria-label": "Close",
+        },
+      }),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -30543,7 +30807,7 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "step2-quantity-div d-flex align-items-center" },
+                { staticClass: "width-120 d-flex align-items-center" },
                 [
                   _c(
                     "div",

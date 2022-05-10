@@ -7,5 +7,5 @@ use App\Models\User;
 interface ICommonService
 {
     public function getUser(int $userId) : User;
-
+    public function getOrderStates() : array;
 }

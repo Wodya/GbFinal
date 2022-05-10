@@ -98,7 +98,7 @@ class DatabaseSeeder extends Seeder
         DB::table('order_state')->insert(['id' => 12, 'order_spc_id' => 6, 'quantity' => 1, 'state_id' => 10, 'comment' => '']);
         DB::table('order_state')->insert(['id' => 13, 'order_spc_id' => 6, 'quantity' => 3, 'state_id' => 30, 'comment' => '']);
 
-        $date = Carbon::create(2022, 3, 1, 11, 0, 0);
+        $date = Carbon::create(2022, date('m'), date('d'), 11, 0, 0);
         for ($i=0; $i<20; $i++) {
             $orderHeadId = DB::table('order_head')->max("id") + 1;
             $orderSpcId = DB::table('order_spc')->max("id") + 1;

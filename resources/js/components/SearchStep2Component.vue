@@ -61,7 +61,7 @@
                     <div class="col d-flex justify-content-start align-items-center">
                         {{item.price}} ₽
                     </div>
-                    <div class="step2-quantity-div d-flex align-items-center">
+                    <div class="width-120 d-flex align-items-center">
                         <div class="col d-flex justify-content-center align-items-center">
                             <img v-show="item.basket_quantity === 0" src="/img/basket_step2.png" class="fadein" alt="К" v-on:click="changeQuantity(item.offerId, 1)">
                             <div v-show="item.basket_quantity !== 0">
